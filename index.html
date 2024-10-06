@@ -154,9 +154,17 @@
             <button
               class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               @click.prevent="addOne"
+              v-if="!isEditing"
             >
               Ajouter Monstre
             </button>
+            <button
+            class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            @click.prevent="updateOneById(inputmonster.id)"
+            v-if="isEditing"
+          >
+            Mise à jour du Monstre
+          </button>
           </form>
         </div>
 
@@ -251,6 +259,8 @@
             <div class="text-right">
               <button
                 class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-full"
+                @click.prevent="editOneById(monster.id)"
+                
               >
                 Modifier
               </button>
@@ -319,7 +329,26 @@
       1
     );
   }, 600);
-}
+  
+},
+
+      editOneById(id) {
+        this.isEditing = true;
+        this.inputmonster = {
+          ...this.monsters.find((item) => item.id == id),
+        };
+      },
+
+      updateOneById(id) {
+        this.monsters.splice(
+          this.monsters.findIndex((item) => item.id == id),
+          1,
+          { ...this.inputmonster }
+        );
+        this.inputmonster = { id: null, name: "", email: "", phone: "" };
+        this.isEditing = false;
+      },
+
 
   },
  
