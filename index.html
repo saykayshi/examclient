@@ -282,7 +282,7 @@
         <p>&copy; 2024 Monstres WTF Vintage. Tous droits réservés.</p>
       </div>
     </footer>
-  </body>
+
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
  <script>
   localStorage.setItem(
@@ -308,7 +308,6 @@
           type: "",
           pv: "",
           attaque: "",
-          description: ""
         },
       };
     },
@@ -327,7 +326,7 @@ computed: {
     addOne() {
       this.inputmonster.id = Date.now(); 
       this.monsters.push({ ...this.inputmonster });
-      this.inputmonster = { id: null, name: "", type: "", pv: "", attaque: "", description: "" };
+      this.inputmonster = { id: "", name: "", type: "", pv: "", attaque: "" };
     },
 
     deleteOneById(id) {
@@ -355,7 +354,7 @@ computed: {
           1,
           { ...this.inputmonster }
         );
-        this.inputmonster = { id: null, name: "", email: "", phone: "" };
+        this.inputmonster = { id: "", name: "", type: "", pv: "", attaque: "",  };
         this.isEditing = false;
       },
 
@@ -376,4 +375,5 @@ computed: {
 
 
  </script>
+  </body>
 </html>
